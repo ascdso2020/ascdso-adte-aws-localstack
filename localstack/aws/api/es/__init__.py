@@ -15,8 +15,8 @@ Boolean = bool
 CloudWatchLogsLogGroupArn = str
 CommitMessage = str
 ConnectionAlias = str
-ConnectionId = str
-ConnectionStatusMessage = str
+CrossClusterSearchConnectionId = str
+CrossClusterSearchConnectionStatusMessage = str
 DeploymentType = str
 DescribePackagesFilterValue = str
 DomainId = str
@@ -24,6 +24,7 @@ DomainName = str
 DomainNameFqdn = str
 Double = float
 DryRun = bool
+ElasticsearchVersionString = str
 ErrorMessage = str
 ErrorType = str
 GUID = str
@@ -68,7 +69,6 @@ UIntValue = int
 UpgradeName = str
 UserPoolId = str
 Username = str
-VersionString = str
 
 
 class AutoTuneDesiredState(str):
@@ -114,16 +114,80 @@ class DomainPackageStatus(str):
     DISSOCIATION_FAILED = "DISSOCIATION_FAILED"
 
 
+class ESPartitionInstanceType(str):
+    m3_medium_elasticsearch = "m3.medium.elasticsearch"
+    m3_large_elasticsearch = "m3.large.elasticsearch"
+    m3_xlarge_elasticsearch = "m3.xlarge.elasticsearch"
+    m3_2xlarge_elasticsearch = "m3.2xlarge.elasticsearch"
+    m4_large_elasticsearch = "m4.large.elasticsearch"
+    m4_xlarge_elasticsearch = "m4.xlarge.elasticsearch"
+    m4_2xlarge_elasticsearch = "m4.2xlarge.elasticsearch"
+    m4_4xlarge_elasticsearch = "m4.4xlarge.elasticsearch"
+    m4_10xlarge_elasticsearch = "m4.10xlarge.elasticsearch"
+    m5_large_elasticsearch = "m5.large.elasticsearch"
+    m5_xlarge_elasticsearch = "m5.xlarge.elasticsearch"
+    m5_2xlarge_elasticsearch = "m5.2xlarge.elasticsearch"
+    m5_4xlarge_elasticsearch = "m5.4xlarge.elasticsearch"
+    m5_12xlarge_elasticsearch = "m5.12xlarge.elasticsearch"
+    r5_large_elasticsearch = "r5.large.elasticsearch"
+    r5_xlarge_elasticsearch = "r5.xlarge.elasticsearch"
+    r5_2xlarge_elasticsearch = "r5.2xlarge.elasticsearch"
+    r5_4xlarge_elasticsearch = "r5.4xlarge.elasticsearch"
+    r5_12xlarge_elasticsearch = "r5.12xlarge.elasticsearch"
+    c5_large_elasticsearch = "c5.large.elasticsearch"
+    c5_xlarge_elasticsearch = "c5.xlarge.elasticsearch"
+    c5_2xlarge_elasticsearch = "c5.2xlarge.elasticsearch"
+    c5_4xlarge_elasticsearch = "c5.4xlarge.elasticsearch"
+    c5_9xlarge_elasticsearch = "c5.9xlarge.elasticsearch"
+    c5_18xlarge_elasticsearch = "c5.18xlarge.elasticsearch"
+    ultrawarm1_medium_elasticsearch = "ultrawarm1.medium.elasticsearch"
+    ultrawarm1_large_elasticsearch = "ultrawarm1.large.elasticsearch"
+    t2_micro_elasticsearch = "t2.micro.elasticsearch"
+    t2_small_elasticsearch = "t2.small.elasticsearch"
+    t2_medium_elasticsearch = "t2.medium.elasticsearch"
+    r3_large_elasticsearch = "r3.large.elasticsearch"
+    r3_xlarge_elasticsearch = "r3.xlarge.elasticsearch"
+    r3_2xlarge_elasticsearch = "r3.2xlarge.elasticsearch"
+    r3_4xlarge_elasticsearch = "r3.4xlarge.elasticsearch"
+    r3_8xlarge_elasticsearch = "r3.8xlarge.elasticsearch"
+    i2_xlarge_elasticsearch = "i2.xlarge.elasticsearch"
+    i2_2xlarge_elasticsearch = "i2.2xlarge.elasticsearch"
+    d2_xlarge_elasticsearch = "d2.xlarge.elasticsearch"
+    d2_2xlarge_elasticsearch = "d2.2xlarge.elasticsearch"
+    d2_4xlarge_elasticsearch = "d2.4xlarge.elasticsearch"
+    d2_8xlarge_elasticsearch = "d2.8xlarge.elasticsearch"
+    c4_large_elasticsearch = "c4.large.elasticsearch"
+    c4_xlarge_elasticsearch = "c4.xlarge.elasticsearch"
+    c4_2xlarge_elasticsearch = "c4.2xlarge.elasticsearch"
+    c4_4xlarge_elasticsearch = "c4.4xlarge.elasticsearch"
+    c4_8xlarge_elasticsearch = "c4.8xlarge.elasticsearch"
+    r4_large_elasticsearch = "r4.large.elasticsearch"
+    r4_xlarge_elasticsearch = "r4.xlarge.elasticsearch"
+    r4_2xlarge_elasticsearch = "r4.2xlarge.elasticsearch"
+    r4_4xlarge_elasticsearch = "r4.4xlarge.elasticsearch"
+    r4_8xlarge_elasticsearch = "r4.8xlarge.elasticsearch"
+    r4_16xlarge_elasticsearch = "r4.16xlarge.elasticsearch"
+    i3_large_elasticsearch = "i3.large.elasticsearch"
+    i3_xlarge_elasticsearch = "i3.xlarge.elasticsearch"
+    i3_2xlarge_elasticsearch = "i3.2xlarge.elasticsearch"
+    i3_4xlarge_elasticsearch = "i3.4xlarge.elasticsearch"
+    i3_8xlarge_elasticsearch = "i3.8xlarge.elasticsearch"
+    i3_16xlarge_elasticsearch = "i3.16xlarge.elasticsearch"
+
+
+class ESWarmPartitionInstanceType(str):
+    ultrawarm1_medium_elasticsearch = "ultrawarm1.medium.elasticsearch"
+    ultrawarm1_large_elasticsearch = "ultrawarm1.large.elasticsearch"
+
+
 class EngineType(str):
     OpenSearch = "OpenSearch"
     Elasticsearch = "Elasticsearch"
 
 
-class InboundConnectionStatusCode(str):
+class InboundCrossClusterSearchConnectionStatusCode(str):
     PENDING_ACCEPTANCE = "PENDING_ACCEPTANCE"
     APPROVED = "APPROVED"
-    PROVISIONING = "PROVISIONING"
-    ACTIVE = "ACTIVE"
     REJECTING = "REJECTING"
     REJECTED = "REJECTED"
     DELETING = "DELETING"
@@ -137,124 +201,18 @@ class LogType(str):
     AUDIT_LOGS = "AUDIT_LOGS"
 
 
-class OpenSearchPartitionInstanceType(str):
-    m3_medium_search = "m3.medium.search"
-    m3_large_search = "m3.large.search"
-    m3_xlarge_search = "m3.xlarge.search"
-    m3_2xlarge_search = "m3.2xlarge.search"
-    m4_large_search = "m4.large.search"
-    m4_xlarge_search = "m4.xlarge.search"
-    m4_2xlarge_search = "m4.2xlarge.search"
-    m4_4xlarge_search = "m4.4xlarge.search"
-    m4_10xlarge_search = "m4.10xlarge.search"
-    m5_large_search = "m5.large.search"
-    m5_xlarge_search = "m5.xlarge.search"
-    m5_2xlarge_search = "m5.2xlarge.search"
-    m5_4xlarge_search = "m5.4xlarge.search"
-    m5_12xlarge_search = "m5.12xlarge.search"
-    m5_24xlarge_search = "m5.24xlarge.search"
-    r5_large_search = "r5.large.search"
-    r5_xlarge_search = "r5.xlarge.search"
-    r5_2xlarge_search = "r5.2xlarge.search"
-    r5_4xlarge_search = "r5.4xlarge.search"
-    r5_12xlarge_search = "r5.12xlarge.search"
-    r5_24xlarge_search = "r5.24xlarge.search"
-    c5_large_search = "c5.large.search"
-    c5_xlarge_search = "c5.xlarge.search"
-    c5_2xlarge_search = "c5.2xlarge.search"
-    c5_4xlarge_search = "c5.4xlarge.search"
-    c5_9xlarge_search = "c5.9xlarge.search"
-    c5_18xlarge_search = "c5.18xlarge.search"
-    t3_nano_search = "t3.nano.search"
-    t3_micro_search = "t3.micro.search"
-    t3_small_search = "t3.small.search"
-    t3_medium_search = "t3.medium.search"
-    t3_large_search = "t3.large.search"
-    t3_xlarge_search = "t3.xlarge.search"
-    t3_2xlarge_search = "t3.2xlarge.search"
-    ultrawarm1_medium_search = "ultrawarm1.medium.search"
-    ultrawarm1_large_search = "ultrawarm1.large.search"
-    ultrawarm1_xlarge_search = "ultrawarm1.xlarge.search"
-    t2_micro_search = "t2.micro.search"
-    t2_small_search = "t2.small.search"
-    t2_medium_search = "t2.medium.search"
-    r3_large_search = "r3.large.search"
-    r3_xlarge_search = "r3.xlarge.search"
-    r3_2xlarge_search = "r3.2xlarge.search"
-    r3_4xlarge_search = "r3.4xlarge.search"
-    r3_8xlarge_search = "r3.8xlarge.search"
-    i2_xlarge_search = "i2.xlarge.search"
-    i2_2xlarge_search = "i2.2xlarge.search"
-    d2_xlarge_search = "d2.xlarge.search"
-    d2_2xlarge_search = "d2.2xlarge.search"
-    d2_4xlarge_search = "d2.4xlarge.search"
-    d2_8xlarge_search = "d2.8xlarge.search"
-    c4_large_search = "c4.large.search"
-    c4_xlarge_search = "c4.xlarge.search"
-    c4_2xlarge_search = "c4.2xlarge.search"
-    c4_4xlarge_search = "c4.4xlarge.search"
-    c4_8xlarge_search = "c4.8xlarge.search"
-    r4_large_search = "r4.large.search"
-    r4_xlarge_search = "r4.xlarge.search"
-    r4_2xlarge_search = "r4.2xlarge.search"
-    r4_4xlarge_search = "r4.4xlarge.search"
-    r4_8xlarge_search = "r4.8xlarge.search"
-    r4_16xlarge_search = "r4.16xlarge.search"
-    i3_large_search = "i3.large.search"
-    i3_xlarge_search = "i3.xlarge.search"
-    i3_2xlarge_search = "i3.2xlarge.search"
-    i3_4xlarge_search = "i3.4xlarge.search"
-    i3_8xlarge_search = "i3.8xlarge.search"
-    i3_16xlarge_search = "i3.16xlarge.search"
-    r6g_large_search = "r6g.large.search"
-    r6g_xlarge_search = "r6g.xlarge.search"
-    r6g_2xlarge_search = "r6g.2xlarge.search"
-    r6g_4xlarge_search = "r6g.4xlarge.search"
-    r6g_8xlarge_search = "r6g.8xlarge.search"
-    r6g_12xlarge_search = "r6g.12xlarge.search"
-    m6g_large_search = "m6g.large.search"
-    m6g_xlarge_search = "m6g.xlarge.search"
-    m6g_2xlarge_search = "m6g.2xlarge.search"
-    m6g_4xlarge_search = "m6g.4xlarge.search"
-    m6g_8xlarge_search = "m6g.8xlarge.search"
-    m6g_12xlarge_search = "m6g.12xlarge.search"
-    c6g_large_search = "c6g.large.search"
-    c6g_xlarge_search = "c6g.xlarge.search"
-    c6g_2xlarge_search = "c6g.2xlarge.search"
-    c6g_4xlarge_search = "c6g.4xlarge.search"
-    c6g_8xlarge_search = "c6g.8xlarge.search"
-    c6g_12xlarge_search = "c6g.12xlarge.search"
-    r6gd_large_search = "r6gd.large.search"
-    r6gd_xlarge_search = "r6gd.xlarge.search"
-    r6gd_2xlarge_search = "r6gd.2xlarge.search"
-    r6gd_4xlarge_search = "r6gd.4xlarge.search"
-    r6gd_8xlarge_search = "r6gd.8xlarge.search"
-    r6gd_12xlarge_search = "r6gd.12xlarge.search"
-    r6gd_16xlarge_search = "r6gd.16xlarge.search"
-    t4g_small_search = "t4g.small.search"
-    t4g_medium_search = "t4g.medium.search"
-
-
-class OpenSearchWarmPartitionInstanceType(str):
-    ultrawarm1_medium_search = "ultrawarm1.medium.search"
-    ultrawarm1_large_search = "ultrawarm1.large.search"
-    ultrawarm1_xlarge_search = "ultrawarm1.xlarge.search"
-
-
 class OptionState(str):
     RequiresIndexDocuments = "RequiresIndexDocuments"
     Processing = "Processing"
     Active = "Active"
 
 
-class OutboundConnectionStatusCode(str):
+class OutboundCrossClusterSearchConnectionStatusCode(str):
+    PENDING_ACCEPTANCE = "PENDING_ACCEPTANCE"
     VALIDATING = "VALIDATING"
     VALIDATION_FAILED = "VALIDATION_FAILED"
-    PENDING_ACCEPTANCE = "PENDING_ACCEPTANCE"
-    APPROVED = "APPROVED"
     PROVISIONING = "PROVISIONING"
     ACTIVE = "ACTIVE"
-    REJECTING = "REJECTING"
     REJECTED = "REJECTED"
     DELETING = "DELETING"
     DELETED = "DELETED"
@@ -275,7 +233,7 @@ class PackageType(str):
     TXT_DICTIONARY = "TXT-DICTIONARY"
 
 
-class ReservedInstancePaymentOption(str):
+class ReservedElasticsearchInstancePaymentOption(str):
     ALL_UPFRONT = "ALL_UPFRONT"
     PARTIAL_UPFRONT = "PARTIAL_UPFRONT"
     NO_UPFRONT = "NO_UPFRONT"
@@ -369,34 +327,30 @@ class ValidationException(ServiceException):
     pass
 
 
-class AWSDomainInformation(TypedDict, total=False):
+class AcceptInboundCrossClusterSearchConnectionRequest(ServiceRequest):
+    CrossClusterSearchConnectionId: CrossClusterSearchConnectionId
+
+
+class InboundCrossClusterSearchConnectionStatus(TypedDict, total=False):
+    StatusCode: Optional[InboundCrossClusterSearchConnectionStatusCode]
+    Message: Optional[CrossClusterSearchConnectionStatusMessage]
+
+
+class DomainInformation(TypedDict, total=False):
     OwnerId: Optional[OwnerId]
     DomainName: DomainName
     Region: Optional[Region]
 
 
-class AcceptInboundConnectionRequest(ServiceRequest):
-    ConnectionId: ConnectionId
+class InboundCrossClusterSearchConnection(TypedDict, total=False):
+    SourceDomainInfo: Optional[DomainInformation]
+    DestinationDomainInfo: Optional[DomainInformation]
+    CrossClusterSearchConnectionId: Optional[CrossClusterSearchConnectionId]
+    ConnectionStatus: Optional[InboundCrossClusterSearchConnectionStatus]
 
 
-class InboundConnectionStatus(TypedDict, total=False):
-    StatusCode: Optional[InboundConnectionStatusCode]
-    Message: Optional[ConnectionStatusMessage]
-
-
-class DomainInformationContainer(TypedDict, total=False):
-    AWSDomainInformation: Optional[AWSDomainInformation]
-
-
-class InboundConnection(TypedDict, total=False):
-    LocalDomainInfo: Optional[DomainInformationContainer]
-    RemoteDomainInfo: Optional[DomainInformationContainer]
-    ConnectionId: Optional[ConnectionId]
-    ConnectionStatus: Optional[InboundConnectionStatus]
-
-
-class AcceptInboundConnectionResponse(TypedDict, total=False):
-    Connection: Optional[InboundConnection]
+class AcceptInboundCrossClusterSearchConnectionResponse(TypedDict, total=False):
+    CrossClusterSearchConnection: Optional[InboundCrossClusterSearchConnection]
 
 
 UpdateTimestamp = datetime
@@ -591,7 +545,7 @@ class AutoTuneOptionsStatus(TypedDict, total=False):
     Status: Optional[AutoTuneStatus]
 
 
-class CancelServiceSoftwareUpdateRequest(ServiceRequest):
+class CancelElasticsearchServiceSoftwareUpdateRequest(ServiceRequest):
     DomainName: DomainName
 
 
@@ -609,35 +563,8 @@ class ServiceSoftwareOptions(TypedDict, total=False):
     OptionalDeployment: Optional[Boolean]
 
 
-class CancelServiceSoftwareUpdateResponse(TypedDict, total=False):
+class CancelElasticsearchServiceSoftwareUpdateResponse(TypedDict, total=False):
     ServiceSoftwareOptions: Optional[ServiceSoftwareOptions]
-
-
-class ColdStorageOptions(TypedDict, total=False):
-    Enabled: Boolean
-
-
-class ZoneAwarenessConfig(TypedDict, total=False):
-    AvailabilityZoneCount: Optional[IntegerClass]
-
-
-class ClusterConfig(TypedDict, total=False):
-    InstanceType: Optional[OpenSearchPartitionInstanceType]
-    InstanceCount: Optional[IntegerClass]
-    DedicatedMasterEnabled: Optional[Boolean]
-    ZoneAwarenessEnabled: Optional[Boolean]
-    ZoneAwarenessConfig: Optional[ZoneAwarenessConfig]
-    DedicatedMasterType: Optional[OpenSearchPartitionInstanceType]
-    DedicatedMasterCount: Optional[IntegerClass]
-    WarmEnabled: Optional[Boolean]
-    WarmType: Optional[OpenSearchWarmPartitionInstanceType]
-    WarmCount: Optional[IntegerClass]
-    ColdStorageOptions: Optional[ColdStorageOptions]
-
-
-class ClusterConfigStatus(TypedDict, total=False):
-    Options: ClusterConfig
-    Status: OptionStatus
 
 
 class CognitoOptions(TypedDict, total=False):
@@ -652,15 +579,19 @@ class CognitoOptionsStatus(TypedDict, total=False):
     Status: OptionStatus
 
 
-VersionList = List[VersionString]
+class ColdStorageOptions(TypedDict, total=False):
+    Enabled: Boolean
+
+
+ElasticsearchVersionList = List[ElasticsearchVersionString]
 
 
 class CompatibleVersionsMap(TypedDict, total=False):
-    SourceVersion: Optional[VersionString]
-    TargetVersions: Optional[VersionList]
+    SourceVersion: Optional[ElasticsearchVersionString]
+    TargetVersions: Optional[ElasticsearchVersionList]
 
 
-CompatibleVersionsList = List[CompatibleVersionsMap]
+CompatibleElasticsearchVersionsList = List[CompatibleVersionsMap]
 
 
 class DomainEndpointOptions(TypedDict, total=False):
@@ -707,10 +638,28 @@ class EBSOptions(TypedDict, total=False):
     Iops: Optional[IntegerClass]
 
 
-class CreateDomainRequest(ServiceRequest):
+class ZoneAwarenessConfig(TypedDict, total=False):
+    AvailabilityZoneCount: Optional[IntegerClass]
+
+
+class ElasticsearchClusterConfig(TypedDict, total=False):
+    InstanceType: Optional[ESPartitionInstanceType]
+    InstanceCount: Optional[IntegerClass]
+    DedicatedMasterEnabled: Optional[Boolean]
+    ZoneAwarenessEnabled: Optional[Boolean]
+    ZoneAwarenessConfig: Optional[ZoneAwarenessConfig]
+    DedicatedMasterType: Optional[ESPartitionInstanceType]
+    DedicatedMasterCount: Optional[IntegerClass]
+    WarmEnabled: Optional[Boolean]
+    WarmType: Optional[ESWarmPartitionInstanceType]
+    WarmCount: Optional[IntegerClass]
+    ColdStorageOptions: Optional[ColdStorageOptions]
+
+
+class CreateElasticsearchDomainRequest(ServiceRequest):
     DomainName: DomainName
-    EngineVersion: Optional[VersionString]
-    ClusterConfig: Optional[ClusterConfig]
+    ElasticsearchVersion: Optional[ElasticsearchVersionString]
+    ElasticsearchClusterConfig: Optional[ElasticsearchClusterConfig]
     EBSOptions: Optional[EBSOptions]
     AccessPolicies: Optional[PolicyDocument]
     SnapshotOptions: Optional[SnapshotOptions]
@@ -722,8 +671,8 @@ class CreateDomainRequest(ServiceRequest):
     LogPublishingOptions: Optional[LogPublishingOptions]
     DomainEndpointOptions: Optional[DomainEndpointOptions]
     AdvancedSecurityOptions: Optional[AdvancedSecurityOptionsInput]
-    TagList: Optional[TagList]
     AutoTuneOptions: Optional[AutoTuneOptionsInput]
+    TagList: Optional[TagList]
 
 
 class VPCDerivedInfo(TypedDict, total=False):
@@ -736,7 +685,7 @@ class VPCDerivedInfo(TypedDict, total=False):
 EndpointsMap = Dict[String, ServiceUrl]
 
 
-class DomainStatus(TypedDict, total=False):
+class ElasticsearchDomainStatus(TypedDict, total=False):
     DomainId: DomainId
     DomainName: DomainName
     ARN: ARN
@@ -746,8 +695,8 @@ class DomainStatus(TypedDict, total=False):
     Endpoints: Optional[EndpointsMap]
     Processing: Optional[Boolean]
     UpgradeProcessing: Optional[Boolean]
-    EngineVersion: Optional[VersionString]
-    ClusterConfig: ClusterConfig
+    ElasticsearchVersion: Optional[ElasticsearchVersionString]
+    ElasticsearchClusterConfig: ElasticsearchClusterConfig
     EBSOptions: Optional[EBSOptions]
     AccessPolicies: Optional[PolicyDocument]
     SnapshotOptions: Optional[SnapshotOptions]
@@ -763,27 +712,27 @@ class DomainStatus(TypedDict, total=False):
     AutoTuneOptions: Optional[AutoTuneOptionsOutput]
 
 
-class CreateDomainResponse(TypedDict, total=False):
-    DomainStatus: Optional[DomainStatus]
+class CreateElasticsearchDomainResponse(TypedDict, total=False):
+    DomainStatus: Optional[ElasticsearchDomainStatus]
 
 
-class CreateOutboundConnectionRequest(ServiceRequest):
-    LocalDomainInfo: DomainInformationContainer
-    RemoteDomainInfo: DomainInformationContainer
+class CreateOutboundCrossClusterSearchConnectionRequest(ServiceRequest):
+    SourceDomainInfo: DomainInformation
+    DestinationDomainInfo: DomainInformation
     ConnectionAlias: ConnectionAlias
 
 
-class OutboundConnectionStatus(TypedDict, total=False):
-    StatusCode: Optional[OutboundConnectionStatusCode]
-    Message: Optional[ConnectionStatusMessage]
+class OutboundCrossClusterSearchConnectionStatus(TypedDict, total=False):
+    StatusCode: Optional[OutboundCrossClusterSearchConnectionStatusCode]
+    Message: Optional[CrossClusterSearchConnectionStatusMessage]
 
 
-class CreateOutboundConnectionResponse(TypedDict, total=False):
-    LocalDomainInfo: Optional[DomainInformationContainer]
-    RemoteDomainInfo: Optional[DomainInformationContainer]
+class CreateOutboundCrossClusterSearchConnectionResponse(TypedDict, total=False):
+    SourceDomainInfo: Optional[DomainInformation]
+    DestinationDomainInfo: Optional[DomainInformation]
     ConnectionAlias: Optional[ConnectionAlias]
-    ConnectionStatus: Optional[OutboundConnectionStatus]
-    ConnectionId: Optional[ConnectionId]
+    ConnectionStatus: Optional[OutboundCrossClusterSearchConnectionStatus]
+    CrossClusterSearchConnectionId: Optional[CrossClusterSearchConnectionId]
 
 
 class PackageSource(TypedDict, total=False):
@@ -817,36 +766,36 @@ class CreatePackageResponse(TypedDict, total=False):
     PackageDetails: Optional[PackageDetails]
 
 
-class DeleteDomainRequest(ServiceRequest):
+class DeleteElasticsearchDomainRequest(ServiceRequest):
     DomainName: DomainName
 
 
-class DeleteDomainResponse(TypedDict, total=False):
-    DomainStatus: Optional[DomainStatus]
+class DeleteElasticsearchDomainResponse(TypedDict, total=False):
+    DomainStatus: Optional[ElasticsearchDomainStatus]
 
 
-class DeleteInboundConnectionRequest(ServiceRequest):
-    ConnectionId: ConnectionId
+class DeleteInboundCrossClusterSearchConnectionRequest(ServiceRequest):
+    CrossClusterSearchConnectionId: CrossClusterSearchConnectionId
 
 
-class DeleteInboundConnectionResponse(TypedDict, total=False):
-    Connection: Optional[InboundConnection]
+class DeleteInboundCrossClusterSearchConnectionResponse(TypedDict, total=False):
+    CrossClusterSearchConnection: Optional[InboundCrossClusterSearchConnection]
 
 
-class DeleteOutboundConnectionRequest(ServiceRequest):
-    ConnectionId: ConnectionId
+class DeleteOutboundCrossClusterSearchConnectionRequest(ServiceRequest):
+    CrossClusterSearchConnectionId: CrossClusterSearchConnectionId
 
 
-class OutboundConnection(TypedDict, total=False):
-    LocalDomainInfo: Optional[DomainInformationContainer]
-    RemoteDomainInfo: Optional[DomainInformationContainer]
-    ConnectionId: Optional[ConnectionId]
+class OutboundCrossClusterSearchConnection(TypedDict, total=False):
+    SourceDomainInfo: Optional[DomainInformation]
+    DestinationDomainInfo: Optional[DomainInformation]
+    CrossClusterSearchConnectionId: Optional[CrossClusterSearchConnectionId]
     ConnectionAlias: Optional[ConnectionAlias]
-    ConnectionStatus: Optional[OutboundConnectionStatus]
+    ConnectionStatus: Optional[OutboundCrossClusterSearchConnectionStatus]
 
 
-class DeleteOutboundConnectionResponse(TypedDict, total=False):
-    Connection: Optional[OutboundConnection]
+class DeleteOutboundCrossClusterSearchConnectionResponse(TypedDict, total=False):
+    CrossClusterSearchConnection: Optional[OutboundCrossClusterSearchConnection]
 
 
 class DeletePackageRequest(ServiceRequest):
@@ -868,7 +817,7 @@ class DescribeDomainAutoTunesResponse(TypedDict, total=False):
     NextToken: Optional[NextToken]
 
 
-class DescribeDomainConfigRequest(ServiceRequest):
+class DescribeElasticsearchDomainConfigRequest(ServiceRequest):
     DomainName: DomainName
 
 
@@ -907,14 +856,19 @@ class EBSOptionsStatus(TypedDict, total=False):
     Status: OptionStatus
 
 
-class VersionStatus(TypedDict, total=False):
-    Options: VersionString
+class ElasticsearchClusterConfigStatus(TypedDict, total=False):
+    Options: ElasticsearchClusterConfig
     Status: OptionStatus
 
 
-class DomainConfig(TypedDict, total=False):
-    EngineVersion: Optional[VersionStatus]
-    ClusterConfig: Optional[ClusterConfigStatus]
+class ElasticsearchVersionStatus(TypedDict, total=False):
+    Options: ElasticsearchVersionString
+    Status: OptionStatus
+
+
+class ElasticsearchDomainConfig(TypedDict, total=False):
+    ElasticsearchVersion: Optional[ElasticsearchVersionStatus]
+    ElasticsearchClusterConfig: Optional[ElasticsearchClusterConfigStatus]
     EBSOptions: Optional[EBSOptionsStatus]
     AccessPolicies: Optional[AccessPoliciesStatus]
     SnapshotOptions: Optional[SnapshotOptionsStatus]
@@ -929,61 +883,36 @@ class DomainConfig(TypedDict, total=False):
     AutoTuneOptions: Optional[AutoTuneOptionsStatus]
 
 
-class DescribeDomainConfigResponse(TypedDict, total=False):
-    DomainConfig: DomainConfig
+class DescribeElasticsearchDomainConfigResponse(TypedDict, total=False):
+    DomainConfig: ElasticsearchDomainConfig
 
 
-class DescribeDomainRequest(ServiceRequest):
+class DescribeElasticsearchDomainRequest(ServiceRequest):
     DomainName: DomainName
 
 
-class DescribeDomainResponse(TypedDict, total=False):
-    DomainStatus: DomainStatus
+class DescribeElasticsearchDomainResponse(TypedDict, total=False):
+    DomainStatus: ElasticsearchDomainStatus
 
 
 DomainNameList = List[DomainName]
 
 
-class DescribeDomainsRequest(ServiceRequest):
+class DescribeElasticsearchDomainsRequest(ServiceRequest):
     DomainNames: DomainNameList
 
 
-DomainStatusList = List[DomainStatus]
+ElasticsearchDomainStatusList = List[ElasticsearchDomainStatus]
 
 
-class DescribeDomainsResponse(TypedDict, total=False):
-    DomainStatusList: DomainStatusList
+class DescribeElasticsearchDomainsResponse(TypedDict, total=False):
+    DomainStatusList: ElasticsearchDomainStatusList
 
 
-ValueStringList = List[NonEmptyString]
-
-
-class Filter(TypedDict, total=False):
-    Name: Optional[NonEmptyString]
-    Values: Optional[ValueStringList]
-
-
-FilterList = List[Filter]
-
-
-class DescribeInboundConnectionsRequest(ServiceRequest):
-    Filters: Optional[FilterList]
-    MaxResults: Optional[MaxResults]
-    NextToken: Optional[NextToken]
-
-
-InboundConnections = List[InboundConnection]
-
-
-class DescribeInboundConnectionsResponse(TypedDict, total=False):
-    Connections: Optional[InboundConnections]
-    NextToken: Optional[NextToken]
-
-
-class DescribeInstanceTypeLimitsRequest(ServiceRequest):
+class DescribeElasticsearchInstanceTypeLimitsRequest(ServiceRequest):
     DomainName: Optional[DomainName]
-    InstanceType: OpenSearchPartitionInstanceType
-    EngineVersion: VersionString
+    InstanceType: ESPartitionInstanceType
+    ElasticsearchVersion: ElasticsearchVersionString
 
 
 class InstanceCountLimits(TypedDict, total=False):
@@ -1021,21 +950,46 @@ class Limits(TypedDict, total=False):
 LimitsByRole = Dict[InstanceRole, Limits]
 
 
-class DescribeInstanceTypeLimitsResponse(TypedDict, total=False):
+class DescribeElasticsearchInstanceTypeLimitsResponse(TypedDict, total=False):
     LimitsByRole: Optional[LimitsByRole]
 
 
-class DescribeOutboundConnectionsRequest(ServiceRequest):
+ValueStringList = List[NonEmptyString]
+
+
+class Filter(TypedDict, total=False):
+    Name: Optional[NonEmptyString]
+    Values: Optional[ValueStringList]
+
+
+FilterList = List[Filter]
+
+
+class DescribeInboundCrossClusterSearchConnectionsRequest(ServiceRequest):
     Filters: Optional[FilterList]
     MaxResults: Optional[MaxResults]
     NextToken: Optional[NextToken]
 
 
-OutboundConnections = List[OutboundConnection]
+InboundCrossClusterSearchConnections = List[InboundCrossClusterSearchConnection]
 
 
-class DescribeOutboundConnectionsResponse(TypedDict, total=False):
-    Connections: Optional[OutboundConnections]
+class DescribeInboundCrossClusterSearchConnectionsResponse(TypedDict, total=False):
+    CrossClusterSearchConnections: Optional[InboundCrossClusterSearchConnections]
+    NextToken: Optional[NextToken]
+
+
+class DescribeOutboundCrossClusterSearchConnectionsRequest(ServiceRequest):
+    Filters: Optional[FilterList]
+    MaxResults: Optional[MaxResults]
+    NextToken: Optional[NextToken]
+
+
+OutboundCrossClusterSearchConnections = List[OutboundCrossClusterSearchConnection]
+
+
+class DescribeOutboundCrossClusterSearchConnectionsResponse(TypedDict, total=False):
+    CrossClusterSearchConnections: Optional[OutboundCrossClusterSearchConnections]
     NextToken: Optional[NextToken]
 
 
@@ -1064,8 +1018,8 @@ class DescribePackagesResponse(TypedDict, total=False):
     NextToken: Optional[String]
 
 
-class DescribeReservedInstanceOfferingsRequest(ServiceRequest):
-    ReservedInstanceOfferingId: Optional[GUID]
+class DescribeReservedElasticsearchInstanceOfferingsRequest(ServiceRequest):
+    ReservedElasticsearchInstanceOfferingId: Optional[GUID]
     MaxResults: Optional[MaxResults]
     NextToken: Optional[NextToken]
 
@@ -1078,57 +1032,53 @@ class RecurringCharge(TypedDict, total=False):
 RecurringChargeList = List[RecurringCharge]
 
 
-class ReservedInstanceOffering(TypedDict, total=False):
-    ReservedInstanceOfferingId: Optional[GUID]
-    InstanceType: Optional[OpenSearchPartitionInstanceType]
+class ReservedElasticsearchInstanceOffering(TypedDict, total=False):
+    ReservedElasticsearchInstanceOfferingId: Optional[GUID]
+    ElasticsearchInstanceType: Optional[ESPartitionInstanceType]
     Duration: Optional[Integer]
     FixedPrice: Optional[Double]
     UsagePrice: Optional[Double]
     CurrencyCode: Optional[String]
-    PaymentOption: Optional[ReservedInstancePaymentOption]
+    PaymentOption: Optional[ReservedElasticsearchInstancePaymentOption]
     RecurringCharges: Optional[RecurringChargeList]
 
 
-ReservedInstanceOfferingList = List[ReservedInstanceOffering]
+ReservedElasticsearchInstanceOfferingList = List[ReservedElasticsearchInstanceOffering]
 
 
-class DescribeReservedInstanceOfferingsResponse(TypedDict, total=False):
+class DescribeReservedElasticsearchInstanceOfferingsResponse(TypedDict, total=False):
     NextToken: Optional[NextToken]
-    ReservedInstanceOfferings: Optional[ReservedInstanceOfferingList]
+    ReservedElasticsearchInstanceOfferings: Optional[ReservedElasticsearchInstanceOfferingList]
 
 
-class DescribeReservedInstancesRequest(ServiceRequest):
-    ReservedInstanceId: Optional[GUID]
+class DescribeReservedElasticsearchInstancesRequest(ServiceRequest):
+    ReservedElasticsearchInstanceId: Optional[GUID]
     MaxResults: Optional[MaxResults]
     NextToken: Optional[NextToken]
 
 
-Long = int
-
-
-class ReservedInstance(TypedDict, total=False):
+class ReservedElasticsearchInstance(TypedDict, total=False):
     ReservationName: Optional[ReservationToken]
-    ReservedInstanceId: Optional[GUID]
-    BillingSubscriptionId: Optional[Long]
-    ReservedInstanceOfferingId: Optional[String]
-    InstanceType: Optional[OpenSearchPartitionInstanceType]
+    ReservedElasticsearchInstanceId: Optional[GUID]
+    ReservedElasticsearchInstanceOfferingId: Optional[String]
+    ElasticsearchInstanceType: Optional[ESPartitionInstanceType]
     StartTime: Optional[UpdateTimestamp]
     Duration: Optional[Integer]
     FixedPrice: Optional[Double]
     UsagePrice: Optional[Double]
     CurrencyCode: Optional[String]
-    InstanceCount: Optional[Integer]
+    ElasticsearchInstanceCount: Optional[Integer]
     State: Optional[String]
-    PaymentOption: Optional[ReservedInstancePaymentOption]
+    PaymentOption: Optional[ReservedElasticsearchInstancePaymentOption]
     RecurringCharges: Optional[RecurringChargeList]
 
 
-ReservedInstanceList = List[ReservedInstance]
+ReservedElasticsearchInstanceList = List[ReservedElasticsearchInstance]
 
 
-class DescribeReservedInstancesResponse(TypedDict, total=False):
+class DescribeReservedElasticsearchInstancesResponse(TypedDict, total=False):
     NextToken: Optional[String]
-    ReservedInstances: Optional[ReservedInstanceList]
+    ReservedElasticsearchInstances: Optional[ReservedElasticsearchInstanceList]
 
 
 class DissociatePackageRequest(ServiceRequest):
@@ -1154,12 +1104,15 @@ class DryRunResults(TypedDict, total=False):
     Message: Optional[Message]
 
 
-class GetCompatibleVersionsRequest(ServiceRequest):
+ElasticsearchInstanceTypeList = List[ESPartitionInstanceType]
+
+
+class GetCompatibleElasticsearchVersionsRequest(ServiceRequest):
     DomainName: Optional[DomainName]
 
 
-class GetCompatibleVersionsResponse(TypedDict, total=False):
-    CompatibleVersions: Optional[CompatibleVersionsList]
+class GetCompatibleElasticsearchVersionsResponse(TypedDict, total=False):
+    CompatibleElasticsearchVersions: Optional[CompatibleElasticsearchVersionsList]
 
 
 class GetPackageVersionHistoryRequest(ServiceRequest):
@@ -1228,22 +1181,6 @@ class GetUpgradeStatusResponse(TypedDict, total=False):
     UpgradeName: Optional[UpgradeName]
 
 
-InstanceRoleList = List[InstanceRole]
-
-
-class InstanceTypeDetails(TypedDict, total=False):
-    InstanceType: Optional[OpenSearchPartitionInstanceType]
-    EncryptionEnabled: Optional[Boolean]
-    CognitoEnabled: Optional[Boolean]
-    AppLogsEnabled: Optional[Boolean]
-    AdvancedSecurityEnabled: Optional[Boolean]
-    WarmEnabled: Optional[Boolean]
-    InstanceRole: Optional[InstanceRoleList]
-
-
-InstanceTypeDetailsList = List[InstanceTypeDetails]
-
-
 class ListDomainNamesRequest(ServiceRequest):
     EngineType: Optional[EngineType]
 
@@ -1263,15 +1200,25 @@ class ListDomainsForPackageResponse(TypedDict, total=False):
     NextToken: Optional[String]
 
 
-class ListInstanceTypeDetailsRequest(ServiceRequest):
-    EngineVersion: VersionString
+class ListElasticsearchInstanceTypesRequest(ServiceRequest):
+    ElasticsearchVersion: ElasticsearchVersionString
     DomainName: Optional[DomainName]
     MaxResults: Optional[MaxResults]
     NextToken: Optional[NextToken]
 
 
-class ListInstanceTypeDetailsResponse(TypedDict, total=False):
-    InstanceTypeDetails: Optional[InstanceTypeDetailsList]
+class ListElasticsearchInstanceTypesResponse(TypedDict, total=False):
+    ElasticsearchInstanceTypes: Optional[ElasticsearchInstanceTypeList]
+    NextToken: Optional[NextToken]
+
+
+class ListElasticsearchVersionsRequest(ServiceRequest):
+    MaxResults: Optional[MaxResults]
+    NextToken: Optional[NextToken]
+
+
+class ListElasticsearchVersionsResponse(TypedDict, total=False):
+    ElasticsearchVersions: Optional[ElasticsearchVersionList]
     NextToken: Optional[NextToken]
 
 
@@ -1294,33 +1241,23 @@ class ListTagsResponse(TypedDict, total=False):
     TagList: Optional[TagList]
 
 
-class ListVersionsRequest(ServiceRequest):
-    MaxResults: Optional[MaxResults]
-    NextToken: Optional[NextToken]
-
-
-class ListVersionsResponse(TypedDict, total=False):
-    Versions: Optional[VersionList]
-    NextToken: Optional[NextToken]
-
-
-class PurchaseReservedInstanceOfferingRequest(ServiceRequest):
-    ReservedInstanceOfferingId: GUID
+class PurchaseReservedElasticsearchInstanceOfferingRequest(ServiceRequest):
+    ReservedElasticsearchInstanceOfferingId: GUID
     ReservationName: ReservationToken
     InstanceCount: Optional[InstanceCount]
 
 
-class PurchaseReservedInstanceOfferingResponse(TypedDict, total=False):
-    ReservedInstanceId: Optional[GUID]
+class PurchaseReservedElasticsearchInstanceOfferingResponse(TypedDict, total=False):
+    ReservedElasticsearchInstanceId: Optional[GUID]
     ReservationName: Optional[ReservationToken]
 
 
-class RejectInboundConnectionRequest(ServiceRequest):
-    ConnectionId: ConnectionId
+class RejectInboundCrossClusterSearchConnectionRequest(ServiceRequest):
+    CrossClusterSearchConnectionId: CrossClusterSearchConnectionId
 
 
-class RejectInboundConnectionResponse(TypedDict, total=False):
-    Connection: Optional[InboundConnection]
+class RejectInboundCrossClusterSearchConnectionResponse(TypedDict, total=False):
+    CrossClusterSearchConnection: Optional[InboundCrossClusterSearchConnection]
 
 
 class RemoveTagsRequest(ServiceRequest):
@@ -1328,17 +1265,17 @@ class RemoveTagsRequest(ServiceRequest):
     TagKeys: StringList
 
 
-class StartServiceSoftwareUpdateRequest(ServiceRequest):
+class StartElasticsearchServiceSoftwareUpdateRequest(ServiceRequest):
     DomainName: DomainName
 
 
-class StartServiceSoftwareUpdateResponse(TypedDict, total=False):
+class StartElasticsearchServiceSoftwareUpdateResponse(TypedDict, total=False):
     ServiceSoftwareOptions: Optional[ServiceSoftwareOptions]
 
 
-class UpdateDomainConfigRequest(ServiceRequest):
+class UpdateElasticsearchDomainConfigRequest(ServiceRequest):
     DomainName: DomainName
-    ClusterConfig: Optional[ClusterConfig]
+    ElasticsearchClusterConfig: Optional[ElasticsearchClusterConfig]
     EBSOptions: Optional[EBSOptions]
     SnapshotOptions: Optional[SnapshotOptions]
     VPCOptions: Optional[VPCOptions]
@@ -1346,16 +1283,16 @@ class UpdateDomainConfigRequest(ServiceRequest):
     AdvancedOptions: Optional[AdvancedOptions]
     AccessPolicies: Optional[PolicyDocument]
     LogPublishingOptions: Optional[LogPublishingOptions]
-    EncryptionAtRestOptions: Optional[EncryptionAtRestOptions]
     DomainEndpointOptions: Optional[DomainEndpointOptions]
-    NodeToNodeEncryptionOptions: Optional[NodeToNodeEncryptionOptions]
     AdvancedSecurityOptions: Optional[AdvancedSecurityOptionsInput]
+    NodeToNodeEncryptionOptions: Optional[NodeToNodeEncryptionOptions]
+    EncryptionAtRestOptions: Optional[EncryptionAtRestOptions]
     AutoTuneOptions: Optional[AutoTuneOptions]
     DryRun: Optional[DryRun]
 
 
-class UpdateDomainConfigResponse(TypedDict, total=False):
-    DomainConfig: DomainConfig
+class UpdateElasticsearchDomainConfigResponse(TypedDict, total=False):
+    DomainConfig: ElasticsearchDomainConfig
     DryRunResults: Optional[DryRunResults]
 
 
@@ -1370,30 +1307,29 @@ class UpdatePackageResponse(TypedDict, total=False):
     PackageDetails: Optional[PackageDetails]
 
 
-class UpgradeDomainRequest(ServiceRequest):
+class UpgradeElasticsearchDomainRequest(ServiceRequest):
     DomainName: DomainName
-    TargetVersion: VersionString
+    TargetVersion: ElasticsearchVersionString
     PerformCheckOnly: Optional[Boolean]
-    AdvancedOptions: Optional[AdvancedOptions]
 
 
-class UpgradeDomainResponse(TypedDict, total=False):
-    UpgradeId: Optional[String]
+class UpgradeElasticsearchDomainResponse(TypedDict, total=False):
     DomainName: Optional[DomainName]
-    TargetVersion: Optional[VersionString]
+    TargetVersion: Optional[ElasticsearchVersionString]
     PerformCheckOnly: Optional[Boolean]
-    AdvancedOptions: Optional[AdvancedOptions]
 
 
-class OpensearchApi:
+class EsApi:
 
-    service = "opensearch"
-    version = "2021-01-01"
+    service = "es"
+    version = "2015-01-01"
 
-    @handler("AcceptInboundConnection")
-    def accept_inbound_connection(
-        self, context: RequestContext, connection_id: ConnectionId
-    ) -> AcceptInboundConnectionResponse:
+    @handler("AcceptInboundCrossClusterSearchConnection")
+    def accept_inbound_cross_cluster_search_connection(
+        self,
+        context: RequestContext,
+        cross_cluster_search_connection_id: CrossClusterSearchConnectionId,
+    ) -> AcceptInboundCrossClusterSearchConnectionResponse:
         raise NotImplementedError
 
     @handler("AddTags")
@@ -1406,19 +1342,19 @@ class OpensearchApi:
     ) -> AssociatePackageResponse:
         raise NotImplementedError
 
-    @handler("CancelServiceSoftwareUpdate")
-    def cancel_service_software_update(
+    @handler("CancelElasticsearchServiceSoftwareUpdate")
+    def cancel_elasticsearch_service_software_update(
         self, context: RequestContext, domain_name: DomainName
-    ) -> CancelServiceSoftwareUpdateResponse:
+    ) -> CancelElasticsearchServiceSoftwareUpdateResponse:
         raise NotImplementedError
 
-    @handler("CreateDomain")
-    def create_domain(
+    @handler("CreateElasticsearchDomain")
+    def create_elasticsearch_domain(
         self,
         context: RequestContext,
         domain_name: DomainName,
-        engine_version: VersionString = None,
-        cluster_config: ClusterConfig = None,
+        elasticsearch_version: ElasticsearchVersionString = None,
+        elasticsearch_cluster_config: ElasticsearchClusterConfig = None,
         ebs_options: EBSOptions = None,
         access_policies: PolicyDocument = None,
         snapshot_options: SnapshotOptions = None,
@@ -1430,19 +1366,19 @@ class OpensearchApi:
         log_publishing_options: LogPublishingOptions = None,
         domain_endpoint_options: DomainEndpointOptions = None,
         advanced_security_options: AdvancedSecurityOptionsInput = None,
-        tag_list: TagList = None,
         auto_tune_options: AutoTuneOptionsInput = None,
-    ) -> CreateDomainResponse:
+        tag_list: TagList = None,
+    ) -> CreateElasticsearchDomainResponse:
         raise NotImplementedError
 
-    @handler("CreateOutboundConnection")
-    def create_outbound_connection(
+    @handler("CreateOutboundCrossClusterSearchConnection")
+    def create_outbound_cross_cluster_search_connection(
         self,
         context: RequestContext,
-        local_domain_info: DomainInformationContainer,
-        remote_domain_info: DomainInformationContainer,
+        source_domain_info: DomainInformation,
+        destination_domain_info: DomainInformation,
         connection_alias: ConnectionAlias,
-    ) -> CreateOutboundConnectionResponse:
+    ) -> CreateOutboundCrossClusterSearchConnectionResponse:
         raise NotImplementedError
 
     @handler("CreatePackage")
@@ -1456,34 +1392,39 @@ class OpensearchApi:
     ) -> CreatePackageResponse:
         raise NotImplementedError
 
-    @handler("DeleteDomain")
-    def delete_domain(
+    @handler("DeleteElasticsearchDomain")
+    def delete_elasticsearch_domain(
         self, context: RequestContext, domain_name: DomainName
-    ) -> DeleteDomainResponse:
+    ) -> DeleteElasticsearchDomainResponse:
         raise NotImplementedError
 
-    @handler("DeleteInboundConnection")
-    def delete_inbound_connection(
-        self, context: RequestContext, connection_id: ConnectionId
-    ) -> DeleteInboundConnectionResponse:
+    @handler("DeleteElasticsearchServiceRole")
+    def delete_elasticsearch_service_role(
+        self,
+        context: RequestContext,
+    ) -> None:
         raise NotImplementedError
 
-    @handler("DeleteOutboundConnection")
-    def delete_outbound_connection(
-        self, context: RequestContext, connection_id: ConnectionId
-    ) -> DeleteOutboundConnectionResponse:
+    @handler("DeleteInboundCrossClusterSearchConnection")
+    def delete_inbound_cross_cluster_search_connection(
+        self,
+        context: RequestContext,
+        cross_cluster_search_connection_id: CrossClusterSearchConnectionId,
+    ) -> DeleteInboundCrossClusterSearchConnectionResponse:
+        raise NotImplementedError
+
+    @handler("DeleteOutboundCrossClusterSearchConnection")
+    def delete_outbound_cross_cluster_search_connection(
+        self,
+        context: RequestContext,
+        cross_cluster_search_connection_id: CrossClusterSearchConnectionId,
+    ) -> DeleteOutboundCrossClusterSearchConnectionResponse:
         raise NotImplementedError
 
     @handler("DeletePackage")
     def delete_package(
         self, context: RequestContext, package_id: PackageID
     ) -> DeletePackageResponse:
-        raise NotImplementedError
-
-    @handler("DescribeDomain")
-    def describe_domain(
-        self, context: RequestContext, domain_name: DomainName
-    ) -> DescribeDomainResponse:
         raise NotImplementedError
 
     @handler("DescribeDomainAutoTunes")
@@ -1496,46 +1437,52 @@ class OpensearchApi:
     ) -> DescribeDomainAutoTunesResponse:
         raise NotImplementedError
 
-    @handler("DescribeDomainConfig")
-    def describe_domain_config(
+    @handler("DescribeElasticsearchDomain")
+    def describe_elasticsearch_domain(
         self, context: RequestContext, domain_name: DomainName
-    ) -> DescribeDomainConfigResponse:
+    ) -> DescribeElasticsearchDomainResponse:
         raise NotImplementedError
 
-    @handler("DescribeDomains")
-    def describe_domains(
+    @handler("DescribeElasticsearchDomainConfig")
+    def describe_elasticsearch_domain_config(
+        self, context: RequestContext, domain_name: DomainName
+    ) -> DescribeElasticsearchDomainConfigResponse:
+        raise NotImplementedError
+
+    @handler("DescribeElasticsearchDomains")
+    def describe_elasticsearch_domains(
         self, context: RequestContext, domain_names: DomainNameList
-    ) -> DescribeDomainsResponse:
+    ) -> DescribeElasticsearchDomainsResponse:
         raise NotImplementedError
 
-    @handler("DescribeInboundConnections")
-    def describe_inbound_connections(
+    @handler("DescribeElasticsearchInstanceTypeLimits")
+    def describe_elasticsearch_instance_type_limits(
         self,
         context: RequestContext,
-        filters: FilterList = None,
-        max_results: MaxResults = None,
-        next_token: NextToken = None,
-    ) -> DescribeInboundConnectionsResponse:
-        raise NotImplementedError
-
-    @handler("DescribeInstanceTypeLimits")
-    def describe_instance_type_limits(
-        self,
-        context: RequestContext,
-        instance_type: OpenSearchPartitionInstanceType,
-        engine_version: VersionString,
+        instance_type: ESPartitionInstanceType,
+        elasticsearch_version: ElasticsearchVersionString,
         domain_name: DomainName = None,
-    ) -> DescribeInstanceTypeLimitsResponse:
+    ) -> DescribeElasticsearchInstanceTypeLimitsResponse:
         raise NotImplementedError
 
-    @handler("DescribeOutboundConnections")
-    def describe_outbound_connections(
+    @handler("DescribeInboundCrossClusterSearchConnections")
+    def describe_inbound_cross_cluster_search_connections(
         self,
         context: RequestContext,
         filters: FilterList = None,
         max_results: MaxResults = None,
         next_token: NextToken = None,
-    ) -> DescribeOutboundConnectionsResponse:
+    ) -> DescribeInboundCrossClusterSearchConnectionsResponse:
+        raise NotImplementedError
+
+    @handler("DescribeOutboundCrossClusterSearchConnections")
+    def describe_outbound_cross_cluster_search_connections(
+        self,
+        context: RequestContext,
+        filters: FilterList = None,
+        max_results: MaxResults = None,
+        next_token: NextToken = None,
+    ) -> DescribeOutboundCrossClusterSearchConnectionsResponse:
         raise NotImplementedError
 
     @handler("DescribePackages")
@@ -1548,24 +1495,24 @@ class OpensearchApi:
     ) -> DescribePackagesResponse:
         raise NotImplementedError
 
-    @handler("DescribeReservedInstanceOfferings")
-    def describe_reserved_instance_offerings(
+    @handler("DescribeReservedElasticsearchInstanceOfferings")
+    def describe_reserved_elasticsearch_instance_offerings(
         self,
         context: RequestContext,
-        reserved_instance_offering_id: GUID = None,
+        reserved_elasticsearch_instance_offering_id: GUID = None,
         max_results: MaxResults = None,
         next_token: NextToken = None,
-    ) -> DescribeReservedInstanceOfferingsResponse:
+    ) -> DescribeReservedElasticsearchInstanceOfferingsResponse:
         raise NotImplementedError
 
-    @handler("DescribeReservedInstances")
-    def describe_reserved_instances(
+    @handler("DescribeReservedElasticsearchInstances")
+    def describe_reserved_elasticsearch_instances(
         self,
         context: RequestContext,
-        reserved_instance_id: GUID = None,
+        reserved_elasticsearch_instance_id: GUID = None,
         max_results: MaxResults = None,
         next_token: NextToken = None,
-    ) -> DescribeReservedInstancesResponse:
+    ) -> DescribeReservedElasticsearchInstancesResponse:
         raise NotImplementedError
 
     @handler("DissociatePackage")
@@ -1574,10 +1521,10 @@ class OpensearchApi:
     ) -> DissociatePackageResponse:
         raise NotImplementedError
 
-    @handler("GetCompatibleVersions")
-    def get_compatible_versions(
+    @handler("GetCompatibleElasticsearchVersions")
+    def get_compatible_elasticsearch_versions(
         self, context: RequestContext, domain_name: DomainName = None
-    ) -> GetCompatibleVersionsResponse:
+    ) -> GetCompatibleElasticsearchVersionsResponse:
         raise NotImplementedError
 
     @handler("GetPackageVersionHistory")
@@ -1622,15 +1569,24 @@ class OpensearchApi:
     ) -> ListDomainsForPackageResponse:
         raise NotImplementedError
 
-    @handler("ListInstanceTypeDetails")
-    def list_instance_type_details(
+    @handler("ListElasticsearchInstanceTypes")
+    def list_elasticsearch_instance_types(
         self,
         context: RequestContext,
-        engine_version: VersionString,
+        elasticsearch_version: ElasticsearchVersionString,
         domain_name: DomainName = None,
         max_results: MaxResults = None,
         next_token: NextToken = None,
-    ) -> ListInstanceTypeDetailsResponse:
+    ) -> ListElasticsearchInstanceTypesResponse:
+        raise NotImplementedError
+
+    @handler("ListElasticsearchVersions")
+    def list_elasticsearch_versions(
+        self,
+        context: RequestContext,
+        max_results: MaxResults = None,
+        next_token: NextToken = None,
+    ) -> ListElasticsearchVersionsResponse:
         raise NotImplementedError
 
     @handler("ListPackagesForDomain")
@@ -1647,47 +1603,40 @@ class OpensearchApi:
     def list_tags(self, context: RequestContext, arn: ARN) -> ListTagsResponse:
         raise NotImplementedError
 
-    @handler("ListVersions")
-    def list_versions(
+    @handler("PurchaseReservedElasticsearchInstanceOffering")
+    def purchase_reserved_elasticsearch_instance_offering(
         self,
         context: RequestContext,
-        max_results: MaxResults = None,
-        next_token: NextToken = None,
-    ) -> ListVersionsResponse:
-        raise NotImplementedError
-
-    @handler("PurchaseReservedInstanceOffering")
-    def purchase_reserved_instance_offering(
-        self,
-        context: RequestContext,
-        reserved_instance_offering_id: GUID,
+        reserved_elasticsearch_instance_offering_id: GUID,
         reservation_name: ReservationToken,
         instance_count: InstanceCount = None,
-    ) -> PurchaseReservedInstanceOfferingResponse:
+    ) -> PurchaseReservedElasticsearchInstanceOfferingResponse:
         raise NotImplementedError
 
-    @handler("RejectInboundConnection")
-    def reject_inbound_connection(
-        self, context: RequestContext, connection_id: ConnectionId
-    ) -> RejectInboundConnectionResponse:
+    @handler("RejectInboundCrossClusterSearchConnection")
+    def reject_inbound_cross_cluster_search_connection(
+        self,
+        context: RequestContext,
+        cross_cluster_search_connection_id: CrossClusterSearchConnectionId,
+    ) -> RejectInboundCrossClusterSearchConnectionResponse:
         raise NotImplementedError
 
     @handler("RemoveTags")
     def remove_tags(self, context: RequestContext, arn: ARN, tag_keys: StringList) -> None:
         raise NotImplementedError
 
-    @handler("StartServiceSoftwareUpdate")
-    def start_service_software_update(
+    @handler("StartElasticsearchServiceSoftwareUpdate")
+    def start_elasticsearch_service_software_update(
         self, context: RequestContext, domain_name: DomainName
-    ) -> StartServiceSoftwareUpdateResponse:
+    ) -> StartElasticsearchServiceSoftwareUpdateResponse:
         raise NotImplementedError
 
-    @handler("UpdateDomainConfig")
-    def update_domain_config(
+    @handler("UpdateElasticsearchDomainConfig")
+    def update_elasticsearch_domain_config(
         self,
         context: RequestContext,
         domain_name: DomainName,
-        cluster_config: ClusterConfig = None,
+        elasticsearch_cluster_config: ElasticsearchClusterConfig = None,
         ebs_options: EBSOptions = None,
         snapshot_options: SnapshotOptions = None,
         vpc_options: VPCOptions = None,
@@ -1695,13 +1644,13 @@ class OpensearchApi:
         advanced_options: AdvancedOptions = None,
         access_policies: PolicyDocument = None,
         log_publishing_options: LogPublishingOptions = None,
-        encryption_at_rest_options: EncryptionAtRestOptions = None,
         domain_endpoint_options: DomainEndpointOptions = None,
-        node_to_node_encryption_options: NodeToNodeEncryptionOptions = None,
         advanced_security_options: AdvancedSecurityOptionsInput = None,
+        node_to_node_encryption_options: NodeToNodeEncryptionOptions = None,
+        encryption_at_rest_options: EncryptionAtRestOptions = None,
         auto_tune_options: AutoTuneOptions = None,
         dry_run: DryRun = None,
-    ) -> UpdateDomainConfigResponse:
+    ) -> UpdateElasticsearchDomainConfigResponse:
         raise NotImplementedError
 
     @handler("UpdatePackage")
@@ -1715,13 +1664,12 @@ class OpensearchApi:
     ) -> UpdatePackageResponse:
         raise NotImplementedError
 
-    @handler("UpgradeDomain")
-    def upgrade_domain(
+    @handler("UpgradeElasticsearchDomain")
+    def upgrade_elasticsearch_domain(
         self,
         context: RequestContext,
         domain_name: DomainName,
-        target_version: VersionString,
+        target_version: ElasticsearchVersionString,
         perform_check_only: Boolean = None,
-        advanced_options: AdvancedOptions = None,
-    ) -> UpgradeDomainResponse:
+    ) -> UpgradeElasticsearchDomainResponse:
         raise NotImplementedError
